@@ -1,0 +1,18 @@
+version: '2'
+services:
+  php:
+    image: php:7.0-apache
+    volumes:
+      - ./public:/var/www/html
+    environment:
+        STRIPE_KEY_SECRET: 'sk_live_mDrxWvBBXAXclE2naWNy20FA'
+        STRIPE_KEY_PUBLIC: 'pk_live_z9JaJ3wGN37tBURlXpT8cMqL'
+    ports:
+      - 80:80
+      - 443:443
+  composer:
+    restart: 'no'
+    image: composer/composer:php7
+    command: install
+    volumes:
+      - ./public:/app
